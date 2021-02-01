@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TitoBackend.Service
+namespace Gamlo.StoreBackend.Service
 {
     public class MemoryStore : IStore
     {

@@ -4,9 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using TitoBackend.Service;
+using Gamlo.StoreBackend.DataAccess;
+using Gamlo.StoreBackend.Service;
 
-namespace TitoBackend
+namespace Gamlo.StoreBackend
 {
     public class Startup
     {
@@ -24,10 +25,10 @@ namespace TitoBackend
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TitoBackend", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "StoreBackend", Version = "v1" });
             });
 
-            services.AddSingleton<IStore, MemoryStore>();
+            services.AddSingleton<IStore, SqLiteStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +38,7 @@ namespace TitoBackend
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TitoBackend v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "StoreBackend v1"));
             }
 
             app.UseRouting();

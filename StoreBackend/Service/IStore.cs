@@ -1,4 +1,4 @@
-﻿namespace TitoBackend.Service
+﻿namespace Gamlo.StoreBackend.Service
 {
     public interface IStore
     {

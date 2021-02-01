@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using TitoBackend.Model;
-using TitoBackend.Service;
+using Gamlo.StoreBackend.Model;
+using Gamlo.StoreBackend.Service;
 
-namespace TitoBackend.Controllers
+namespace Gamlo.StoreBackend.Controllers
 {
     [ApiController]
     [Route("api/store")]
@@ -21,7 +21,7 @@ namespace TitoBackend.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public IActionResult UpdateTime([FromRoute] string id, [FromBody] StoreModel data)
+        public IActionResult UpdateTime([FromRoute] string id, [FromBody] InputModel data)
         {
             store.StoreValue(id, data.Value);
             return Ok();

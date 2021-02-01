@@ -6,9 +6,8 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
-COPY ["StoreBackend/StoreBackend.csproj", "StoreBackend/"]
+COPY [".", "StoreBackend/"]
 RUN dotnet restore "StoreBackend/StoreBackend.csproj"
-COPY . .
 WORKDIR "/src/StoreBackend"
 RUN dotnet build "StoreBackend.csproj" -c Release -o /app/build
 

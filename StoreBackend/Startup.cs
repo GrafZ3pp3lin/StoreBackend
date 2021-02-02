@@ -25,7 +25,7 @@ namespace Gamlo.StoreBackend
             {
                 options.AddDefaultPolicy(builder =>
                 {
-                    builder.WithMethods("PUT", "GET")
+                    builder.WithMethods("PUT", "OPTIONS", "GET")
                         .AllowAnyOrigin()
                         .AllowAnyHeader();
                 });

@@ -9,7 +9,7 @@ using Gamlo.StoreBackend.Service;
 
 namespace Gamlo.StoreBackend
 {
-    public class Startup
+    internal class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -25,7 +25,7 @@ namespace Gamlo.StoreBackend
             {
                 options.AddDefaultPolicy(builder =>
                 {
-                    builder.WithMethods("PUT", "OPTIONS", "GET")
+                    builder.WithMethods("PUT", "OPTIONS", "GET", "POST")
                         .AllowAnyOrigin()
                         .AllowAnyHeader();
                 });

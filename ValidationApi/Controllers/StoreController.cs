@@ -3,12 +3,13 @@ using Microsoft.Extensions.Logging;
 using System;
 using Gamlo.StoreBackend.Model;
 using Gamlo.StoreBackend.Service;
+using System.Threading.Tasks;
 
 namespace Gamlo.StoreBackend.Controllers
 {
     [ApiController]
     [Route("api/store")]
-    public class StoreController : ControllerBase
+    internal class StoreController : ControllerBase
     {
         private readonly ILogger<StoreController> _logger;
         private readonly IStore store;
@@ -19,26 +20,33 @@ namespace Gamlo.StoreBackend.Controllers
             this.store = store;
         }
 
+        [HttpPost]
+        public async Task<IActionResult> PostScheme([FromBody] SchemeModel scheme)
+        {
+            await store.StoreScheme(scheme);
+            return Ok();
+        }
+
         [HttpPut]
         [Route("{id}")]
-        public IActionResult UpdateTime([FromRoute] string id, [FromBody] InputModel data)
+        public async Task<IActionResult> UpdateValue([FromRoute] string id, [FromBody] ValueModel data)
         {
-            store.StoreValue(id, data.Value);
+            await store.StoreValue(id, data.Value);
             return Ok();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public IActionResult GetTime([FromRoute] string id)
+        public async Task<IActionResult> GetValue([FromRoute] string id)
         {
             try
             {
-                var value = store.GetValue(id);
+                string value = await store.GetValue(id);
                 return Ok(value);
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "error while gte value {id}", id);
+                _logger.LogError(e, "error while get value {id}", id);
                 return NotFound();
             }
         }

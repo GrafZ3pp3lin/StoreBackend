@@ -5,6 +5,7 @@
     <RootNamespace>Gamlo.StoreBackend</RootNamespace>
     <UserSecretsId>beca1969-4681-49e3-a13f-3758ca7b382c</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

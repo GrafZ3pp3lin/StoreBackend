@@ -4,7 +4,7 @@ using Serilog;
 using Serilog.Events;
 using System;
 
-namespace Gamlo.StoreBackend
+namespace Gamlo.ValidationApi
 {
     internal class Program
     {

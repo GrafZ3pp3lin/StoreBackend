@@ -1,6 +1,6 @@
 ﻿using SQLite;
 
-namespace Gamlo.StoreBackend.DataAccess
+namespace Gamlo.ValidationApi.DataAccess
 {
     internal class ValueEntry
     {

@@ -1,13 +1,15 @@
-﻿using Gamlo.StoreBackend.Service;
+﻿using Gamlo.ValidationApi.Core.Interfaces;
 
-namespace Gamlo.StoreBackend.Interfaces
+namespace Gamlo.ValidationApi.Interfaces
 {
     public interface IValidatorResolver
     {
-        IValidator ResolveValidator(string name);
+        bool HasValidator(string name);
+
+        int LoadAllValidators(string path);
 
         bool LoadValidator(string name, string path);
 
-        int LoadAllValidators(string path);
+        IValidator ResolveValidator(string name);
     }
 }

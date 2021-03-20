@@ -1,7 +1,7 @@
-﻿using Gamlo.StoreBackend.Model;
+﻿using Gamlo.ValidationApi.Core.Model;
 using System.Threading.Tasks;
 
-namespace Gamlo.StoreBackend.Service
+namespace Gamlo.ValidationApi.Core.Interfaces
 {
     public interface IStore
     {

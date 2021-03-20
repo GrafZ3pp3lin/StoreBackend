@@ -6,15 +6,15 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
-COPY [".", "StoreBackend/"]
-RUN dotnet restore "StoreBackend/StoreBackend.csproj"
-WORKDIR "/src/StoreBackend"
-RUN dotnet build "StoreBackend.csproj" -c Release -o /app/build
+COPY [".", "ValidationApi/"]
+RUN dotnet restore "ValidationApi/ValidationApi.csproj"
+WORKDIR "/src/ValidationApi"
+RUN dotnet build "ValidationApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "StoreBackend.csproj" -c Release -o /app/publish
+RUN dotnet publish "ValidationApi.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "StoreBackend.dll"]
+ENTRYPOINT ["dotnet", "ValidationApi.dll"]

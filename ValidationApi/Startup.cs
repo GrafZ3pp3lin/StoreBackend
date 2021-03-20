@@ -1,13 +1,13 @@
+using Gamlo.ValidationApi.Core.Interfaces;
+using Gamlo.ValidationApi.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Gamlo.StoreBackend.DataAccess;
-using Gamlo.StoreBackend.Service;
 
-namespace Gamlo.StoreBackend
+namespace Gamlo.ValidationApi
 {
     internal class Startup
     {
@@ -34,7 +34,7 @@ namespace Gamlo.StoreBackend
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "StoreBackend", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ValidationApi", Version = "v1" });
             });
 
             services.AddSingleton<IStore, SqLiteStore>();
@@ -47,7 +47,7 @@ namespace Gamlo.StoreBackend
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "StoreBackend v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ValidationApi v1"));
             }
 
             app.UseRouting();

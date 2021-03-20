@@ -1,11 +1,11 @@
-﻿using Gamlo.StoreBackend.Model;
-using Gamlo.StoreBackend.Service;
+﻿using Gamlo.ValidationApi.Core.Interfaces;
+using Gamlo.ValidationApi.Core.Model;
 using SQLite;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Gamlo.StoreBackend.DataAccess
+namespace Gamlo.ValidationApi.DataAccess
 {
     public class SqLiteStore : IStore
     {

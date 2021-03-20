@@ -1,9 +1,10 @@
-﻿using Gamlo.StoreBackend.Model;
+﻿using Gamlo.ValidationApi.Core.Interfaces;
+using Gamlo.ValidationApi.Core.Model;
 using System;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 
-namespace Gamlo.StoreBackend.Service
+namespace Gamlo.ValidationApi.Service
 {
     public class MemoryStore : IStore
     {

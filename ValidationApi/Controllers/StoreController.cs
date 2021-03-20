@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Gamlo.ValidationApi.Core.Interfaces;
+using Gamlo.ValidationApi.Core.Model;
+using Gamlo.ValidationApi.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using Gamlo.StoreBackend.Model;
-using Gamlo.StoreBackend.Service;
 using System.Threading.Tasks;
 
-namespace Gamlo.StoreBackend.Controllers
+namespace Gamlo.ValidationApi.Controllers
 {
     [ApiController]
     [Route("api/store")]
@@ -13,11 +14,13 @@ namespace Gamlo.StoreBackend.Controllers
     {
         private readonly ILogger<StoreController> _logger;
         private readonly IStore store;
+        private readonly IValidatorResolver resolver;
 
-        public StoreController(ILogger<StoreController> logger, IStore store)
+        public StoreController(ILogger<StoreController> logger, IStore store, IValidatorResolver resolver)
         {
             _logger = logger;
             this.store = store;
+            this.resolver = resolver;
         }
 
         [HttpPost]
@@ -31,6 +34,34 @@ namespace Gamlo.StoreBackend.Controllers
         [Route("{id}")]
         public async Task<IActionResult> UpdateValue([FromRoute] string id, [FromBody] ValueModel data)
         {
+            IValidator validator;
+            SchemeModel scheme;
+            try
+            {
+                scheme = await store.GetScheme(data.Scheme);
+                if (!resolver.HasValidator(scheme.ValidationName) && !resolver.LoadValidator(scheme.ValidationName, "TODO")) // TODO
+                {
+                    throw new InvalidOperationException($"No Validator for Type {scheme.ValidationName} found");
+                }
+                validator = resolver.ResolveValidator(scheme.ValidationName);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Can't resolve validator");
+                throw;
+            }
+            try
+            {
+                if (!validator.IsValueValid(scheme, data))
+                {
+                    throw new InvalidOperationException("Value is not valid");
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Can't validate value");
+                throw;
+            }
             await store.StoreValue(id, data.Value);
             return Ok();
         }

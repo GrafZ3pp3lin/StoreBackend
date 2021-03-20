@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace Gamlo.StoreBackend.Model
+namespace Gamlo.ValidationApi.Core.Model
 {
     /// <summary>
     /// Defines Value Scheme

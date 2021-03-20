@@ -1,6 +1,6 @@
-﻿using Gamlo.StoreBackend.Model;
+﻿using Gamlo.ValidationApi.Core.Model;
 
-namespace Gamlo.StoreBackend.Service
+namespace Gamlo.ValidationApi.Core.Interfaces
 {
     public interface IValidator
     {

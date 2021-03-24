@@ -2,12 +2,17 @@
 using Gamlo.ValidationApi.Core.Model;
 using Gamlo.ValidationApi.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Gamlo.ValidationApi.Controllers
 {
+    /// <summary>
+    /// Controller for Store Operations
+    /// </summary>
     [ApiController]
     [Route("api/store")]
     internal class StoreController : ControllerBase
@@ -15,14 +20,21 @@ namespace Gamlo.ValidationApi.Controllers
         private readonly ILogger<StoreController> _logger;
         private readonly IStore store;
         private readonly IValidatorResolver resolver;
+        private readonly IConfiguration configuration;
 
-        public StoreController(ILogger<StoreController> logger, IStore store, IValidatorResolver resolver)
+        public StoreController(ILogger<StoreController> logger, IStore store, IValidatorResolver resolver, IConfiguration configuration)
         {
             _logger = logger;
             this.store = store;
             this.resolver = resolver;
+            this.configuration = configuration;
         }
 
+        /// <summary>
+        /// Add a ValueScheme to the Store
+        /// </summary>
+        /// <param name="scheme"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> PostScheme([FromBody] SchemeModel scheme)
         {
@@ -30,6 +42,12 @@ namespace Gamlo.ValidationApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Set Or Update a Value with a defined Scheme
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> UpdateValue([FromRoute] string id, [FromBody] ValueModel data)
@@ -66,6 +84,11 @@ namespace Gamlo.ValidationApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Get the Value
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetValue([FromRoute] string id)

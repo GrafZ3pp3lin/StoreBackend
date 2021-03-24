@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValidationApi", "Validation
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationApi.Core", "ValidationApi.Core\ValidationApi.Core.csproj", "{34CD6442-D136-4A4F-B1BB-E9411D31647A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationApi.Test", "ValidationApi.Test\ValidationApi.Test.csproj", "{45CDDDA8-3367-4C16-AF76-2DF0D781BA49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{34CD6442-D136-4A4F-B1BB-E9411D31647A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34CD6442-D136-4A4F-B1BB-E9411D31647A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34CD6442-D136-4A4F-B1BB-E9411D31647A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45CDDDA8-3367-4C16-AF76-2DF0D781BA49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45CDDDA8-3367-4C16-AF76-2DF0D781BA49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45CDDDA8-3367-4C16-AF76-2DF0D781BA49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45CDDDA8-3367-4C16-AF76-2DF0D781BA49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
